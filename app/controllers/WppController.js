@@ -10,7 +10,6 @@ module.exports = {
     },
 
     async qr(req, res){
-        console.log();
         value = cache.get('qr');
         if ( value == undefined || !req.query.f == undefined){
             client.on('qr', (qr) => {
@@ -38,6 +37,7 @@ module.exports = {
                 if(session){
                     cache.set( 'session', session);
                     //JSON.stringify(session)
+                    console.log(session);
                     return res.json(session);
                 }
             });
