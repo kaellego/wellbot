@@ -6,17 +6,18 @@ client.initialize();
 
 module.exports = {
     async index(req, res){
-        return res.send('Hello World!');
+        return res.send('Hello WPP!');
     },
 
     async qr(req, res){
+        console.log();
         value = cache.get('qr');
         if ( value == undefined || !req.query.f == undefined){
             client.on('qr', (qr) => {
                 if(qr){
                     json = {
                         'qr': qr,
-                        'imgqr': encodeURI('https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=' + qr )
+                        'imgqr': 'http://'+ req.headers.host +'/qr/' + encodeURIComponent(qr)
                     };
                     cache.set( 'qr', json, 20000);
                     return res.json(json);
