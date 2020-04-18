@@ -11,5 +11,7 @@ routes.get('/qr/:text', QrController.show)
 routes.get('/wpp', WppController.index);
 routes.get('/wpp/qr', WppController.qr);
 routes.get('/wpp/auth', WppController.auth);
+routes.get('/wpp/messaget', WppController.messaget);
+routes.get('/wpp/disconnected', WppController.disconnected);
 
 module.exports = routes;
