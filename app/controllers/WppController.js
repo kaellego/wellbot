@@ -1,5 +1,5 @@
 const NodeCache = require('node-cache');
-const { Client } = require('whatsapp-web.js');
+const { Client, PrivateChat } = require('whatsapp-web.js');
 const cache = new NodeCache();
 const client = new Client();
 client.initialize();
@@ -12,7 +12,7 @@ module.exports = {
     async qr(req, res){
         value = cache.get('qr');
         if ( value == undefined || !req.query.f == undefined){
-            client.on('qr', (qr) => {
+            await client.on('qr', (qr) => {
                 if(qr){
                     json = {
                         'qr': qr,

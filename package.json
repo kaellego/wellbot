@@ -4,6 +4,7 @@
   "description": "well bot",
   "main": "index.js",
   "scripts": {
+    "producao": "node index",
     "test": "nodemon index.js"
   },
   "keywords": [
@@ -14,7 +15,6 @@
   "author": "Wellington Moraes",
   "license": "ISC",
   "dependencies": {
-    "buffer": "^5.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "node-cache": "^5.1.0",
