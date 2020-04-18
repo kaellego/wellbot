@@ -49,6 +49,13 @@ module.exports = {
         return res.json(value);
     },
 
+    async ready(req, res){
+        client.on('ready', () => {
+            console.log('Client is ready!');
+            return res.json('Client is ready!');
+        });
+    },
+
     async messaget(req, res){
         client.on('message', async msg => {
             console.log('MESSAGE RECEIVED', msg);
@@ -202,6 +209,15 @@ module.exports = {
         client.on('disconnected', (reason) => {
             console.log('Client was logged out', reason);
             return res.send(reason);
+        });
+    },
+
+    async messaget1(req, res){
+        client.on('message', msg => {
+            if (msg.body == '!ping') {
+                msg.reply('pong');
+                console.log('ae');
+            }
         });
     }
 };
