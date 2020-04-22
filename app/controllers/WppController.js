@@ -1,7 +1,7 @@
 const NodeCache = require('node-cache');
 const { Client, PrivateChat } = require('whatsapp-web.js');
 const cache = new NodeCache();
-const client = new Client();
+const client = new Client({ puppeteer: { headless: true/*, executablePath: 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'*/ }, session: cache.get('session') });
 client.initialize();
 
 module.exports = {
@@ -50,10 +50,13 @@ module.exports = {
     },
 
     async ready(req, res){
-        client.on('ready', () => {
-            console.log('Client is ready!');
-            return res.json('Client is ready!');
-        });
+        const chats = await client.getChats();
+        console.log(chats);
+        return JSON.stringify(chats);
+        if (chat.isGroup) {
+            client.sendMessage(msg.from, `Guerra solicitada?`);
+        }
+        console.log('Guerra1', new Date());
     },
 
     async messaget(req, res){
@@ -213,11 +216,12 @@ module.exports = {
     },
 
     async messaget1(req, res){
-        client.on('message', msg => {
+        await client.sendMessage(req.params.user, req.query.data);
+        /*client.on('message', msg => {
             if (msg.body == '!ping') {
                 msg.reply('pong');
                 console.log('ae');
             }
-        });
+        });*/
     }
 };

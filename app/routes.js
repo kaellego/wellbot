@@ -13,7 +13,7 @@ routes.get('/wpp/qr', WppController.qr);
 routes.get('/wpp/auth', WppController.auth);
 routes.get('/wpp/ready', WppController.ready);
 routes.get('/wpp/messaget', WppController.messaget);
-routes.get('/wpp/messaget1', WppController.messaget1);
+routes.get('/wpp/messaget1/:user', WppController.messaget1);
 routes.get('/wpp/disconnected', WppController.disconnected);
 
 module.exports = routes;
